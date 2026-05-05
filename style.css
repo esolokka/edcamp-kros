@@ -404,13 +404,26 @@ ul {
 
 .buttons-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+}
+
+@media (max-width: 1024px) {
+  .buttons-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  /* Make the 3rd offline card wide when in 2-column layout to avoid empty spots */
+  .btn-offline:nth-child(3) {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 768px) {
   .buttons-grid {
     grid-template-columns: 1fr;
+  }
+  .btn-offline:nth-child(3) {
+    grid-column: auto;
   }
 }
 
@@ -511,11 +524,6 @@ ul {
   color: white;
   padding: 15px 30px;
   border-radius: 50px;
-}
-
-.btn-accent:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(255, 214, 41, 0.4);
 }
 
 /* Organizers Parallax */
